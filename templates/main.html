@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+    <title>SPI2</title>
+</head>
+<form action="/" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        Most Unstable Parcel CAPE:
+        <input name="Most Unstable Parcel CAPE" type="number" required>
+        <br>
+        <br>Most Unstable Parcel CIN:
+        <input name="Most Unstable Parcel CIN" type="number" required>
+        <br>
+        <br>Most Unstable Parcel LCL:
+        <input name="Most Unstable Parcel LCL" type="number" required>
+        <br>
+        <br>Most Unstable Parcel CAPE in the 3km above the LFC:
+        <input name="Most Unstable Parcel CAPE in the 3km above the LFC" type="number" required>
+        <br>
+        <br>0-1 Bulk Wind Difference:
+        <input name="0-1 Bulk Wind Difference" type="number" required>
+        <br>
+        <br>Effective Bulk Wind Difference:
+        <input name="Effective Bulk Wind Difference" type="number" required>
+        <br>
+        <br>Effective Storm Relative Helicity:
+        <input name="Effective Storm Relative Helicity" type="number" required>
+        <br>
+        <br>Storm Relative Wind at the Equlibrium Level:
+        <input name="Storm Relative Wind at the Equlibrium Level" type="number" required>
+        <br>
+        <br>Storm Relative Wind in the Effective Inflow Layer:
+        <input name="Storm Relative Wind in the Effective Inflow Layer" type="number" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+	    <br>
+        {% endfor %}
+        <br>
+        <br> <p style="font-size:30px"> Predicted Probability of Supercell:</p>
+           <p style="font-size:50px"> {{result}} % </p>
+    {% endif %}
+</div>
+</html>
