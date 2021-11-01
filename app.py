@@ -4,10 +4,10 @@ import pandas as pd
 # Use pickle to load in the pre-trained model.
 with open(f'model/SPI_GBT.sav', 'rb') as f:
     gbt = pickle.load(f)
-with open(f'model/SPI_GBT.sav', 'rb') as f:
-    gbt = pickle.load(f)
-with open(f'model/SPI_GBT.sav', 'rb') as f:
-    gbt = pickle.load(f)
+with open(f'model/SPI_SVM.sav', 'rb') as f:
+    svm = pickle.load(f)
+##with open(f'model/SPI_GBT.sav', 'rb') as f:
+##    gbt = pickle.load(f)
 app = flask.Flask(__name__, template_folder='templates')
 @app.route('/')
 @app.route('/', methods=['GET', 'POST'])
@@ -29,8 +29,9 @@ def main():
                                        dtype=float)
         gbt_prediction = 100*round(gbt.predict_proba(input_variables)[:,-1][0],3)
         svm_prediction = 100*round(svm.predict_proba(input_variables_scaled)[:,-1][0],3)
-        ann_prediction = 100*round(ann.predict_proba(input_variables_scaled)[:,-1][0],3)
-        prediction=gbt_prediction+svm_prediction+ann_prediction
+        prediction=gbt_prediction+svm_prediction/2.0
+        #ann_prediction = 100*round(ann.predict_proba(input_variables_scaled)[:,-1][0],3)
+        #prediction=gbt_prediction+svm_prediction+ann_prediction
         return flask.render_template('main.html',
                                      original_input={'Most Unstable Parcel CAPE':MUCAPE,
                                                      'Most Unstable Parcel CIN':MUCIN,
