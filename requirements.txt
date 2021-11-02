@@ -3,4 +3,4 @@ pandas
 numpy
 gunicorn
 sklearn
-keras
+tensorflow
