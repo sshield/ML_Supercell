@@ -2,5 +2,5 @@ flask
 pandas
 numpy
 gunicorn
-sklearn==0.22.2
+sklearn==0.22.2.post1
 tensorflow-cpu
