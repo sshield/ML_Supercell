@@ -1,6 +1,7 @@
 import flask
 import pickle
 import pandas as pd
+import numpy as np
 from tensorflow import keras
 # Use pickle to load in the pre-trained model.
 
@@ -32,8 +33,8 @@ def main():
         input_variables_scaled=scaler.transform(input_variables)
         gbt_prediction = 100*round(gbt.predict_proba(input_variables)[:,-1][0],3)
         svm_prediction = 100*round(svm.predict_proba(input_variables_scaled)[:,-1][0],3)
-        ann_prediction = 100*round(ann.predict(input_variables_scaled),3)
-        #prediction=(gbt_prediction+svm_prediction+ann_prediction)/3.0
+        ann_prediction = 100*round(ann.predict(input_variables_scaled)[0][0],3)
+        prediction=(gbt_prediction+svm_prediction+ann_prediction)/3.0
         return flask.render_template('main.html',
                                      original_input={'Most Unstable Parcel CAPE':MUCAPE,
                                                      'Most Unstable Parcel CIN':MUCIN,
