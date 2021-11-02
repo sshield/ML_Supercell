@@ -1,7 +1,7 @@
 import flask
 import pickle
 import pandas as pd
-import keras
+from tensorflow import keras
 # Use pickle to load in the pre-trained model.
 
 gbt = pickle.load(open(f'model/SPI_GBT.sav', 'rb'))
