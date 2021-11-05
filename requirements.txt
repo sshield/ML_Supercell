@@ -1,6 +1,5 @@
 flask
-pandas
 gunicorn
 scikit-learn
 tensorflow-cpu
-nomkl
+

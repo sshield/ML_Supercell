@@ -1,6 +1,6 @@
 import flask
 import pickle
-import pandas as pd
+#import pandas as pd
 #import numpy as np
 from tensorflow import keras
 # Use pickle to load in the pre-trained model.
@@ -27,9 +27,10 @@ def main():
         ESRH = flask.request.form['Effective Storm Relative Helicity']
         el_sr_wind = flask.request.form['Storm Relative Wind at the Equlibrium Level']
         eff_inflow_sr_wind = flask.request.form['Storm Relative Wind in the Effective Inflow Layer']
-        input_variables = pd.DataFrame([[MUCAPE, MUCIN, MULCL, LLCAPE, sfc1shear, EBWD, ESRH, el_sr_wind, eff_inflow_sr_wind]],
-                                       columns=['MUCAPE', 'MUCIN', 'MULCL', 'LLCAPE', 'sfc1shear', 'EBWD', 'ESRH', 'el_sr_wind', 'eff_inflow_sr_wind'],
-                                       dtype=float)
+        #input_variables = pd.DataFrame([[MUCAPE, MUCIN, MULCL, LLCAPE, sfc1shear, EBWD, ESRH, el_sr_wind, eff_inflow_sr_wind]],
+        #                               columns=['MUCAPE', 'MUCIN', 'MULCL', 'LLCAPE', 'sfc1shear', 'EBWD', 'ESRH', 'el_sr_wind', 'eff_inflow_sr_wind'],
+        #                               dtype=float)
+        input_variables = [MUCAPE, MUCIN, MULCL, LLCAPE, sfc1shear, EBWD, ESRH, el_sr_wind, eff_inflow_sr_wind],
         input_variables_scaled=scaler.transform(input_variables)
         gbt_prediction = 100*round(gbt.predict_proba(input_variables)[:,-1][0],3)
         svm_prediction = 100*round(svm.predict_proba(input_variables_scaled)[:,-1][0],3)
