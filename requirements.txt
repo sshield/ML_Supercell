@@ -2,4 +2,4 @@ flask
 pandas
 gunicorn
 scikit-learn
-tensorflow-cpu
+tensorflow==1.14
