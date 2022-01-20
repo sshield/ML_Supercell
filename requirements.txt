@@ -1,5 +1,0 @@
-flask
-gunicorn
-scikit-learn
-tensorflow-cpu
-
